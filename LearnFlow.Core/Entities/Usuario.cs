@@ -10,5 +10,7 @@
         public string TelefoneCelular { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
         public bool Ativo { get; set; }
+        public List<UsuarioAssinatura> UsuarioAssinaturas { get; set; }
+        public List<UsuarioAulaConcluida> UsuarioAulaConcluidas { get; set; }
     }
 }

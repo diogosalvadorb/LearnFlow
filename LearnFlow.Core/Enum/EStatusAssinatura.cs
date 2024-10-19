@@ -1,6 +1,6 @@
 ﻿namespace LearnFlow.Core.Enum
 {
-    public enum StatusAssinatura
+    public enum EStatusAssinatura
     {
         Pendente = 1,
         Ativo = 2,
