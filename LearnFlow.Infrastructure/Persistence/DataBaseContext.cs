@@ -15,7 +15,7 @@ namespace LearnFlow.Infrastructure.Persistence
         public DbSet<PagamentoAssinatura> PagamentoAssinaturas { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<UsuarioAssinatura> UsuarioAssinaturas { get; set; }
-        public DbSet<UsuarioAulaConcluida> usuarioAulaConcluidas { get; set; }
+        public DbSet<UsuarioAulaConcluida> UsuarioAulaConcluidas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
