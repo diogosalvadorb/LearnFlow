@@ -1,28 +1,36 @@
 ﻿using LearnFlow.Core.Entities;
 using LearnFlow.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace LearnFlow.Infrastructure.Persistence.Repositories
 {
     public class AssinaturaRepository : IAssinaturaRepository
     {
-        public Task<List<Assinatura>> GetGetAllAsync()
+        private readonly DataBaseContext _dbContext;
+        public AssinaturaRepository(DataBaseContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
         }
 
-        public Task<Curso> GetByIdAsync(Guid id)
+        public async Task<List<Assinatura>> GetGetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _dbContext.Assinaturas.ToListAsync();
         }
 
-        public Task AddAsync(Assinatura assinatura)
+        public async Task<Assinatura> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Assinaturas.SingleOrDefaultAsync(x => x.Id ==id);
         }
 
-        public Task SaveChangesAsync()
+        public async Task AddAsync(Assinatura assinatura)
         {
-            throw new NotImplementedException();
+            await _dbContext.AddAsync(assinatura);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace LearnFlow.Core.Repositories
 {
-    public interface IPagamentoAssinatura
+    public interface IPagamentoAssinaturaRepository
     {
         Task<List<PagamentoAssinatura>> GetGetAllAsync();
         Task<PagamentoAssinatura> GetByIdAsync(Guid id);

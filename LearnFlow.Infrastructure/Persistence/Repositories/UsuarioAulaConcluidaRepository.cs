@@ -1,28 +1,36 @@
 ﻿using LearnFlow.Core.Entities;
 using LearnFlow.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace LearnFlow.Infrastructure.Persistence.Repositories
 {
     public class UsuarioAulaConcluidaRepository : IUsuarioAulaConcluidaRepository
     {
-        public Task<List<UsuarioAulaConcluida>> GetGetAllAsync()
+        private readonly DataBaseContext _dbContext;
+        public UsuarioAulaConcluidaRepository(DataBaseContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
         }
 
-        public Task<UsuarioAulaConcluida> GetByIdAsync(Guid id)
+        public async Task<List<UsuarioAulaConcluida>> GetGetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _dbContext.UsuarioAulaConcluidas.ToListAsync();
         }
 
-        public Task AddAsync(UsuarioAulaConcluida usuarioAulaConcluida)
+        public async Task<UsuarioAulaConcluida> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await _dbContext.UsuarioAulaConcluidas.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task SaveChangesAsync()
+        public async Task AddAsync(UsuarioAulaConcluida usuarioAulaConcluida)
         {
-            throw new NotImplementedException();
+            await _dbContext.AddAsync(usuarioAulaConcluida);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
